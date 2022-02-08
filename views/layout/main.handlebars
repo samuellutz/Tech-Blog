@@ -7,6 +7,22 @@
     <title>Tech Blog</title>
 </head>
 <body>
-    
+    <header>
+        <h1>Web Blog welcomes you...</h1>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        {{#if loggedIn}}
+        <button id='logout' class='btn-no-style'>Logout</button>
+        {{else}}
+        <a href="/login">Login</a>
+        {{/if}}
+    </nav>
+    <main>
+        {{{body}}}
+    </main>
+    {{#if loggedIn}}
+    <script src='/public/js/logout.js'></script>
+    {{/if}}
 </body>
 </html>

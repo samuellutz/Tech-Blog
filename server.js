@@ -17,7 +17,7 @@ const hbs = exphbs.create({ helpers });
 
 // Configure and link a session object with the sequelize store
 const sess = {
-  secret: 'Super secret recipe',
+  secret: 'Super Forest secrets',
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -38,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-}); 
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+  sequelize.sync({ force: false });
+});
