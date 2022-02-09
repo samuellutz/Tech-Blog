@@ -12,7 +12,7 @@ router.get('/', async (req, res) =>{
                 },
             ],
         });
-
+        console.log(dbPostData) 
         const posts = dbPostData.map((e) => 
             e.get({plain: true})
             

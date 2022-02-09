@@ -1,10 +1,5 @@
-module.exports = {
-    checkAuth: (req, res, next) => {
-      // If the user isn't logged in, redirect them to the login route
-      if (!req.session.logged_in) {
-        res.redirect('/login');
-      } else {
-        next();
-      }
-    }
-}
+function compareStrings(str1, str2) {
+    return str1.equals(str2);
+  }
+  
+  module.exports = compareStrings;
