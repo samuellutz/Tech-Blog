@@ -4,8 +4,6 @@
         "id": 1,
         "title": "Black bears are the puppies of the forestr",
         "body": "Lorem Ipsum Dolor Sit Amet",
-        "user_id": null,
-        "user": null,
-        "comments": []
+        "user_id": 1
     }
 ] 

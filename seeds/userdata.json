@@ -1,8 +1,9 @@
 [
     {
-        "user_id":"LostDude",
+        "username":"LostDude",
         "email":"Woodsrock@gmail.com",
-        "password":"blackbears111"
+        "password":"blackbears111",
+        "user_id": 1
 
     }
 ] 
