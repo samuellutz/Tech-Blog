@@ -1,9 +1,11 @@
 [
 
     {
+        "id": 1,
         "title": "Black bears are the puppies of the forestr",
         "body": "Lorem Ipsum Dolor Sit Amet",
-        "creator": 1
-
+        "user_id": null,
+        "user": null,
+        "comments": []
     }
 ] 
