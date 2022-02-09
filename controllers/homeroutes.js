@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
-const checkAuth = require('../utils/auth');
+const { User, Post, Comment } = require('../models');
+const { checkAuth } = require('../utils/helpers');
 
 router.get('/', async (req, res) =>{
     try{
@@ -15,6 +15,7 @@ router.get('/', async (req, res) =>{
 
         const posts = dbPostData.map((e) => 
             e.get({plain: true})
+            
         );
         res.render('homepage', {
             posts,
@@ -34,4 +35,42 @@ router.get('/login', (req, res) => {
     res.render('login')
 })
 
-module.exports = router; 
+router.get('/dashboard', (req, res) => {
+    if (req.session.loggedIn) {
+        res.render('dashboard')
+        return
+    } else res.render('login')
+})
+
+router.get('/newPost', (req, res) => {
+    if (req.session.loggedIn) {
+        res.render('newPost')
+        return
+    } else res.render('login')
+})
+
+router.get('/comments/1', (req, res) => {
+    if (req.session.loggedIn) {
+        res.render('comment')
+        return
+    } else res.render('login')
+})
+
+router.get('/post/:id', async (req, res)=>{
+    const dbPostData = await Post.findOne({
+        where: { id: req.params.id },
+        include: {
+            model: User,
+            attributes: ['name'],
+        }
+    }) 
+    // console.log(typeof dbPostData)
+    console.log(dbPostData.get())
+    let post = dbPostData.get({plain: true});
+    console.log(post)
+    res.render('post', {
+        post
+    })
+})
+
+module.exports = router;

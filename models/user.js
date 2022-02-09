@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
-//Declaring User model
+//Declaring User model (will create structure for user table)
 class User extends Model {
     //uses bcrypt to compare entered password with stored password for given user
   checkPassword(loginPw) {
@@ -20,6 +20,7 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
     email: {
       type: DataTypes.STRING,
