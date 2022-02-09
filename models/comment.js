@@ -1,45 +1,47 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
-class Comment extends Model{};
+//Set up object
+class Comment extends Model {}
 
 Comment.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        content: {
-            type: DataTypes.STRING,
-            allowNull:false,
-
-        },
-        creator: {
-            type:DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'user',
-                key: 'id'
-            },
-        },
-        originalPost: {
-            type:DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'post',
-                key: 'id'
-            },
-        }
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-        sequelize,
-        timestamps:true,
-        freezeTableName:true,
-        underscored:true,
-        modelName: 'post'
-    }
-)
-
-module.exports = Comment; 
+    comment_text: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { len: [1] }, //ensure there is at least one character inside the comment body
+    },
+    user_id: {
+      //user who made the post
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "user",
+        key: "id",
+      },
+    },
+    post_id: {
+      //the id of the post it belongs to
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "post",
+        key: "id",
+      },
+    },
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    underscored: true,
+    modelName: "comment",
+  }
+);
+//export
+module.exports = Comment;
